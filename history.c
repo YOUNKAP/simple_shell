@@ -1,15 +1,16 @@
 #include "shell.h"
 
 /**
- * get_history_file -> get the hist file
- * @info -> parameter struct
+ * get_history_file - gets the hist file
+ * @info: parameter struct
  *
- * Return -> allocated str contain hist file
+ * Return: allocated string containg hist file
  */
 
 char *get_history_file(info_t *info)
 {
-	char *dir, *buf;
+	char *buf;
+	char  *dir;
 
 	dir = _getenv(info, "HOME=");
 	if (!dir)
@@ -25,10 +26,10 @@ char *get_history_file(info_t *info)
 }
 
 /**
- * write_history -> create  file, or append to existing file
- * @info -> parameter struct
+ * write_history - 
+ * @info: the parameter struct
  *
- * Return -> 1 (success), else -1
+ * Return: 1 on success, else -1
  */
 int write_history(info_t *info)
 {
@@ -54,16 +55,16 @@ int write_history(info_t *info)
 }
 
 /**
- * read_history -> read hist from file
- * @info -> the parameter struct
+ * read_history - reads hist
+ * @info: the parameter struct
  *
- * Return -> hist count on success, 0 (other)
+ * Return: success, 0 otherwise
  */
 int read_history(info_t *info)
 {
-	int i, linecount = 0, last = 0;
-	ssize_t rdlen, fd, fsize = 0;
+	int i, last = 0, linecount = 0;
 	struct stat st;
+	ssize_t fd, rdlen, fsize = 0;
 	char *buf = NULL, *filename = get_history_file(info);
 
 	if (!filename)
@@ -103,12 +104,12 @@ int read_history(info_t *info)
 }
 
 /**
- * build_history_list -> adds entry to a hist linked list
- * @info -> Structure potential args
- * @buf -> buffer
- * @linecount -> hist histcount, linecount
+ * build_history_list - adds entry to a history linked list
+ * @info: Structure contain potential arg. Used to maintain
+ * @buf: buffer
+ * @linecount: the history linecount, histcount
  *
- * Return -> 0
+ * Return: 0
  */
 int build_history_list(info_t *info, char *buf, int linecount)
 {
@@ -124,10 +125,10 @@ int build_history_list(info_t *info, char *buf, int linecount)
 }
 
 /**
- * renumber_history -> renum hist linked list after change
- * @info -> Structure potential arg
+ * renumber_history - renumbers the hist
+ * @info: Structure contain arg
  *
- * Return -> new histcount
+ * Return: hist count
  */
 int renumber_history(info_t *info)
 {

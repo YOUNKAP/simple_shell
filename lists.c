@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * add_node -> adds node to start list
- * @head -> addr pointer to head node
- * @str -> str field of node
- * @num -> node index used by hist
+ * add_node - adds a node to the start
+ * @head: addr
+ * @str: str field of node
+ * @num: node index used by hist
  *
- * Return -> list seize
+ * Return: size of list
  */
 list_t *add_node(list_t **head, const char *str, int num)
 {
@@ -34,16 +34,16 @@ list_t *add_node(list_t **head, const char *str, int num)
 }
 
 /**
- * add_node_end -> adds node to end list
- * @head -> addr pointer to head node
- * @str -> str field of node
- * @num -> node index used  hist
+ * add_node_end - adds a n
+ * @head: address of pointer to head node
+ * @str: str
+ * @num: node index used by history
  *
- * Return -> list seize
+ * Return: size of list
  */
 list_t *add_node_end(list_t **head, const char *str, int num)
 {
-	list_t  *node, *new_node;
+	list_t *new_node, *node;
 
 	if (!head)
 		return (NULL);
@@ -75,10 +75,10 @@ list_t *add_node_end(list_t **head, const char *str, int num)
 }
 
 /**
- * print_list_str -> print str elt list_t linked list
- * @h -> pointer to first node
+ * print_list_str - prints only the str 
+ * @h: pointer to first node
  *
- * Return -> list seize
+ * Return: size of list
  */
 size_t print_list_str(const list_t *h)
 {
@@ -95,16 +95,16 @@ size_t print_list_str(const list_t *h)
 }
 
 /**
- * delete_node_at_index -> delete node at given index
- * @head -> addr pointer to first node
- * @index -> index of node to delete
+ * delete_node_at_index 
+ * @head: addr
+ * @index: index of node to delete
  *
  * Return: 1 (success), 0 (failure)
  */
 int delete_node_at_index(list_t **head, unsigned int index)
 {
-	list_t  *prev_node, *node;
 	unsigned int i = 0;
+	list_t *node, *prev_node;
 
 	if (!head || !*head)
 		return (0);
@@ -135,16 +135,16 @@ int delete_node_at_index(list_t **head, unsigned int index)
 }
 
 /**
- * free_list -> free nodes of a list
- * @head_ptr -> addr pointer to head node
+ * free_list - frees all nodes of a list
+ * @head_ptr: 
  *
- * Return -> void
+ * Return: void
  */
 void free_list(list_t **head_ptr)
 {
-	list_t *node, *head, *next_node;
+	list_t *node, *next_node, *head;
 
-	if ((!head_ptr) || (!*head_ptr))
+	if (!head_ptr || !*head_ptr)
 		return;
 	head = *head_ptr;
 	node = head;

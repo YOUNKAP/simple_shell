@@ -1,21 +1,22 @@
 #include "shell.h"
 
 /**
- * _myexit -> exit shell
- * @info -> Structure containing potential arg
- *  Return -> exit status (0) if info.argv[0] != "exit"
+ * _myexit - exit shell
+ * @info: Structure contain arg
+ *          
+ *  Return: status code (0) if info.argv[0] != "exit"
  */
 int _myexit(info_t *info)
 {
 	int exitcheck;
 
-	if (info->argv[1])
+	if (info->argv[1])  /* If there is an exit arguement */
 	{
 		exitcheck = _erratoi(info->argv[1]);
 		if (exitcheck == -1)
 		{
 			info->status = 2;
-			print_error(info, "Illegal num: ");
+			print_error(info, "Illegal number: ");
 			_eputs(info->argv[1]);
 			_eputchar('\n');
 			return (1);
@@ -28,15 +29,14 @@ int _myexit(info_t *info)
 }
 
 /**
- * _mycd -> change current dir
- * @info -> Structure potential arg
- *  Return ->  0
+ * _mycd - change current directory 
+ * @info: Structure contain  potential arg
+ *  Return: 0
  */
 int _mycd(info_t *info)
 {
-	char *dir; 
-	char *s; 
-	char buffer[1024];
+	char *s, *dir;
+	char  buffer[1024];
 	int chdir_ret;
 
 	s = getcwd(buffer, 1024);
@@ -46,7 +46,7 @@ int _mycd(info_t *info)
 	{
 		dir = _getenv(info, "HOME=");
 		if (!dir)
-			chdir_ret = 
+			chdir_ret = /* TODO: what should this be? */
 				chdir((dir = _getenv(info, "PWD=")) ? dir : "/");
 		else
 			chdir_ret = chdir(dir);
@@ -60,7 +60,7 @@ int _mycd(info_t *info)
 			return (1);
 		}
 		_puts(_getenv(info, "OLDPWD=")), _putchar('\n');
-		chdir_ret = 
+		chdir_ret = /* TODO: what should this be? */
 			chdir((dir = _getenv(info, "OLDPWD=")) ? dir : "/");
 	}
 	else
@@ -79,9 +79,9 @@ int _mycd(info_t *info)
 }
 
 /**
- * _myhelp -> change current dir process
- * @info -> structure containing potential arg
- *  Return ->  0
+ * _myhelp - change current dir
+ * @info: Structure contain arg
+ *  Return: 0
  */
 int _myhelp(info_t *info)
 {

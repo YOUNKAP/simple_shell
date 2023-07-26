@@ -1,20 +1,20 @@
 #include "shell.h"
 
 /**
- * _erratoi -> convert str to int
- * @s -> str to be converted
- * Return -> 0 if str,-1 on error
+ * _erratoi - convert str to an int
+ * @s: the str to be converted
+ * Return: 0  (string), -1  (error)
  */
 int _erratoi(char *s)
 {
 	unsigned long int result = 0;
 	int i = 0;
-
+	
 	if (*s == '+')
 		s++;  
 	for (i = 0;  s[i] != '\0'; i++)
 	{
-		if ((s[i] >= '0') && (s[i] <= '9'))
+		if (s[i] >= '0' && s[i] <= '9')
 		{
 			result *= 10;
 			result += (s[i] - '0');
@@ -28,12 +28,12 @@ int _erratoi(char *s)
 }
 
 /**
- * print_error -> print error
- * @info -> parameter & return info struct
- * @estr -> str error type
- * Return -> 0 if str, -1 on error
+ * print_error - prints error message
+ * @info: the parameter & return info struct
+ * @estr: string contain error type
+ * Return: 0  (string), (-1 on error)
  */
-void print_error( char *estr, info_t *info)
+void print_error(info_t *info, char *estr)
 {
 	_eputs(info->fname);
 	_eputs(": ");
@@ -45,17 +45,18 @@ void print_error( char *estr, info_t *info)
 }
 
 /**
- * print_d -> funct print decimal (integer) num (base 10)
- * @input -> input
- * @fd -> file descriptor
+ * print_d - function prints a decimal (integer) number (base 10)
+ * @input: the input
+ * @fd: file descriptor to write to
  *
- * Return -> num of char printed
+ * Return: number of char print
  */
-int print_d(int fd, int input)
+int print_d(int input, int fd)
 {
 	int (*__putchar)(char) = _putchar;
+	int i;
+	int  count = 0;
 	unsigned int _abs_, current;
-	int i, count = 0;
 
 	if (fd == STDERR_FILENO)
 		__putchar = _eputchar;
@@ -84,25 +85,25 @@ int print_d(int fd, int input)
 }
 
 /**
- * convert_number -> convert funct,clone of itoa
- * @num -> number
- * @base -> base
- * @flags -> arg flags
+ * convert_number - converter function
+ * @num: num
+ * @base: base
+ * @flags: arg flags
  *
- * Return -> str
+ * Return: string
  */
-char *convert_number(int base, long int num, int flags)
+char *convert_number(long int num, int base, int flags)
 {
-	static char buffer[50];
 	static char *array;
+	static char buffer[50];
+	unsigned long n = num;
 	char *ptr;
 	char sign = 0;
-	unsigned long n = num;
 
-	if ((!(flags & CONVERT_UNSIGNED)) && (num < 0))
+	if (!(flags & CONVERT_UNSIGNED) && num < 0)
 	{
-		sign = '-';
 		n = -num;
+		sign = '-';
 
 	}
 	array = flags & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
@@ -120,10 +121,10 @@ char *convert_number(int base, long int num, int flags)
 }
 
 /**
- * remove_comments -> funct replace instance of '#' with '\0'
- * @buf -> addr of the str to modify
+ * remove_comments -  of '#' with '\0'
+ * @buf: addr str to modify
  *
- * Return -> 0;
+ * Return:  0;
  */
 void remove_comments(char *buf)
 {

@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * _myenv -> prints current env
- * @info -> Contain potential arg
- * Return -> 0
+ * _myenv - print current env
+ * @info: Structure contain arg.
+ * Return: 0
  */
 int _myenv(info_t *info)
 {
@@ -12,16 +12,17 @@ int _myenv(info_t *info)
 }
 
 /**
- * _getenv -> get env var
- * @name -> env var name
- * @info -> Contain potential arg
+ * _getenv - get value env var
+ * @info: Structure containarg
+ * @name: env var name
  *
- * Return -> Value
+ * Return: the value
  */
 char *_getenv(info_t *info, const char *name)
 {
 	char *p;
 	list_t *node = info->env;
+	
 
 	while (node)
 	{
@@ -34,9 +35,9 @@ char *_getenv(info_t *info, const char *name)
 }
 
 /**
- * _mysetenv -> Initialize env var 
- * @info -> Structure contain potential arg
- *  Return -> 0
+ * _mysetenv - Initialize  new env  var
+ * @info: Structure contain  arg
+ *  Return:  0
  */
 int _mysetenv(info_t *info)
 {
@@ -51,9 +52,9 @@ int _mysetenv(info_t *info)
 }
 
 /**
- * _mysetenv -> Initialize env var
- * @info -> Structure containing potential arg
- *  Return -> 0
+ * _myunsetenv - Remove  env var
+ * @info: Structure contain env
+ *  Return:  0
  */
 int _myunsetenv(info_t *info)
 {
@@ -71,15 +72,15 @@ int _myunsetenv(info_t *info)
 }
 
 /**
- * populate_env_list -> populates env linked list
- * @info -> Containing potential argument
- * Return -> 0
+ * populate_env_list - populate env linked list
+ * @info: Structure contain arg
+ * Return: char *p;
  */
 int populate_env_list(info_t *info)
 {
 	size_t i;
 	list_t *node = NULL;
-
+	
 	for (i = 0; environ[i]; i++)
 		add_node_end(&node, environ[i], 0);
 	info->env = node;

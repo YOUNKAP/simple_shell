@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * bfree -> free pointer and NULL addr
- * @ptr -> addr pointer to free
+ * bfree - frees a point  the addr
+ * @ptr: addr  free
  *
- * Return -> 1 (success), 0 (other)
+ * Return: 1 (freed), 0 (other)
  */
 int bfree(void **ptr)
 {

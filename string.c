@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * _strlen -> return len of  str
- * @s -> str whose len to check
+ * _strlen - returns the length of a str
+ * @s: the string whose length to check
  *
- * Return -> int len of str
+ * Return: integer length of string
  */
 int _strlen(char *s)
 {
@@ -15,16 +15,15 @@ int _strlen(char *s)
 
 	while (*s++)
 		i++;
-
 	return (i);
 }
 
 /**
- * _strcmp -> perform lexicogarphic comparison of two strs.
- * @s1 -> first str
- * @s2 -> second str
+ * _strcmp - performs lexicogarphic comparison of two strangs.
+ * @s1: the first str
+ * @s2: the second str
  *
- * Return -> negative (s1 < s2), positive (s1 > s2), zero (s1 == s2)
+ * Return: negative if s1 < s2, positive if s1 > s2, zero if s1 == s2
  */
 int _strcmp(char *s1, char *s2)
 {
@@ -42,11 +41,11 @@ int _strcmp(char *s1, char *s2)
 }
 
 /**
- * starts_with -> check needle start haystack
- * @haystack -> str to search
- * @needle -> sub str to find
+ * starts_with - check needle starts with haystack
+ * @haystack: stringsearch
+ * @needle: the substrin
  *
- * Return -> addr of next char of haystack or NULL
+ * Return: address of next char of haystack or NULL
  */
 char *starts_with(const char *haystack, const char *needle)
 {
@@ -57,11 +56,11 @@ char *starts_with(const char *haystack, const char *needle)
 }
 
 /**
- * _strcat -> concatenate two str
- * @dest -> dest buffer
- * @src ->  scr buffer
+ * _strcat  oncatenates two strings
+ * @dest: the nation buffer
+ * @src: the source
  *
- * Return -> pointer to dest buffer
+ * Return: pointer to destination buffer
  */
 char *_strcat(char *dest, char *src)
 {

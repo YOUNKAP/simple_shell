@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- *_eputs -> print string input
- * @str ->  the printed string
+ *_eputs - print input str
+ * @str:  str to  print
  *
- * Return: None
+ * Return: Nothing
  */
 void _eputs(char *str)
 {
@@ -20,17 +20,17 @@ void _eputs(char *str)
 }
 
 /**
- * _eputchar -> write char c to stderr
- * @c -> char to print
+ * _eputchar - writes the char c to stderr
+ * @c: The char to print
  *
- * Return:  1 for success, -1 for error
+ * Return: 1  (Success), -1 (Error)
  */
 int _eputchar(char c)
 {
-	static char buf[WRITE_BUF_SIZE];
 	static int i;
+	static char buf[WRITE_BUF_SIZE];
 
-	if ((c == BUF_FLUSH) || (i >= WRITE_BUF_SIZE))
+	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
 	{
 		write(2, buf, i);
 		i = 0;
@@ -41,18 +41,18 @@ int _eputchar(char c)
 }
 
 /**
- * _putfd -> write char c to given fd
- * @c -> char to print
- * @fd -> file descriptor to write to
+ * _putfd - write char c given fd
+ * @c:  char  to print
+ * @fd:  file descriptor to write to
  *
- * Return -> 1 for success, -1 for error
+ * Return: 1 (Success),  -1  (errno)
  */
-int _putfd(int fd, char c)
+int _putfd(char c, int fd)
 {
 	static char buf[WRITE_BUF_SIZE];
 	static int i;
 
-	if ((c == BUF_FLUSH) || (i >= WRITE_BUF_SIZE))
+	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
 	{
 		write(fd, buf, i);
 		i = 0;
@@ -63,13 +63,13 @@ int _putfd(int fd, char c)
 }
 
 /**
- *_putsfd -> print input str
- * @str -> string to print
- * @fd -> file descriptor to write to
+ *_putsfd - print  an input str
+ * @str:  str to be printed
+ * @fd: the file descriptor to write to
  *
- * Return -> numbers of char put
+ * Return: the number of chars put
  */
-int _putsfd(int fd, char *str)
+int _putsfd(char *str, int fd)
 {
 	int i = 0;
 

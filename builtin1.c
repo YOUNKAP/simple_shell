@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * _myhistory -> displays the hist list
- * @info -> Structure containing potential arg
- *  Return -> 0
+ * _myhistory - display hist list.
+ * @info: Structure contain potential args.
+ *  Return: 0
  */
 int _myhistory(info_t *info)
 {
@@ -12,18 +12,18 @@ int _myhistory(info_t *info)
 }
 
 /**
- * unset_alias -> set alias  into str
- * @str -> str alias
- * @info -> parameter struct
+ * unset_alias - set  alias str
+ * @info: parameter struct
+ * @str:  str alias
  *
- * Return -> 0  (success), 1 (errors)
+ * Return:  0 (success) , 1  (on error)
  */
 int unset_alias(info_t *info, char *str)
 {
-	int ret;
 	char c;
-	char *p;
-	
+	char *p ;
+	int ret;
+
 	p = _strchr(str, '=');
 	if (!p)
 		return (1);
@@ -36,11 +36,11 @@ int unset_alias(info_t *info, char *str)
 }
 
 /**
- * set_alias -> sets alias to str
- * @str -> the str alias
- * @info -> parameter struct
+ * set_alias - sets alias to str
+ * @info: parameter struct
+ * @str:  str alias
  *
- * Return -> 0 (success), 1 (error)
+ * Return: 0 (on success), 1 (on error)
  */
 int set_alias(info_t *info, char *str)
 {
@@ -50,17 +50,17 @@ int set_alias(info_t *info, char *str)
 	if (!p)
 		return (1);
 	if (!*++p)
-		return (unset_alias(str, info));
+		return (unset_alias(info, str));
 
-	unset_alias(str, info);
+	unset_alias(info, str);
 	return (add_node_end(&(info->alias), str, 0) == NULL);
 }
 
 /**
- * print_alias -> prints alias
- * @node -> alias node
+ * print_alias - prints str alias
+ * @node: the alias node
  *
- * Return -> 0 (success), 1 (error)
+ * Return:  0 (on success), 1 (on error)
  */
 int print_alias(list_t *node)
 {
@@ -81,9 +81,9 @@ int print_alias(list_t *node)
 }
 
 /**
- * _myalias -> mimic alias builtin  : man alias
- * @info -> Structure containing potential arg
- *  Return -> 0
+ * _myalias - mimic the alias builtin (man alias)
+ * @info: Structure contain  potential arg
+ *  Return:  0
  */
 int _myalias(info_t *info)
 {

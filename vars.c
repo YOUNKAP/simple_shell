@@ -1,32 +1,32 @@
 #include "shell.h"
 
 /**
- * is_chain -> test if current char in buffer is a chain delimeter
- * @info -> parameter struct
- * @buf -> char buffer
- * @p -> addr of current position in buf
+ * is_chain - test if current c
+ * @info: the parameter struct
+ * @buf: the char bu
+ * @p: address of current position in buf
  *
- * Return: 1 (chain delimeter), 0 (other)
+ * Return: 1 if chain delimeter, 0 otherwise
  */
 int is_chain(info_t *info, char *buf, size_t *p)
 {
 	size_t j = *p;
 
-	if ((buf[j] == '|') && (buf[j + 1] == '|'))
+	if (buf[j] == '|' && buf[j + 1] == '|')
 	{
 		buf[j] = 0;
 		j++;
 		info->cmd_buf_type = CMD_OR;
 	}
-	else if ((buf[j] == '&') && (buf[j + 1] == '&'))
+	else if (buf[j] == '&' && buf[j + 1] == '&')
 	{
 		buf[j] = 0;
 		j++;
 		info->cmd_buf_type = CMD_AND;
 	}
-	else if (buf[j] == ';') 
+	else if (buf[j] == ';') /* found end of this command */
 	{
-		buf[j] = 0; 
+		buf[j] = 0; /* replace semicolon with null */
 		info->cmd_buf_type = CMD_CHAIN;
 	}
 	else
@@ -36,14 +36,14 @@ int is_chain(info_t *info, char *buf, size_t *p)
 }
 
 /**
- * check_chain -> check continue chain based on last status
- * @info -> parameter struct
- * @buf -> char buffer
- * @p -> addr of current position in buf
- * @i -> start position in buf
- * @len -> len buffer
+ * check_chain - checks we should continue chaining based on last status
+ * @info: the parameter st
+ * @buf: the char 
+ * @p: address of current position in buf
+ * @i: starting position in buf
+ * @len: length 
  *
- * Return -> Void
+ * Return: Void
  */
 void check_chain(info_t *info, char *buf, size_t *p, size_t i, size_t len)
 {
@@ -70,16 +70,16 @@ void check_chain(info_t *info, char *buf, size_t *p, size_t i, size_t len)
 }
 
 /**
- * replace_alias -> replace aliases the tokenized str
- * @info -> parameter struct
+ * replace_alias - replaces an aliases in the tokenized string
+ * @info: the parameter 
  *
- * Return -> 1 (replaced), 0 (other)
+ * Return: 1,(replaced), 0 (other)
  */
 int replace_alias(info_t *info)
 {
+	list_t *node;
 	int i;
 	char *p;
-	list_t *node;
 
 	for (i = 0; i < 10; i++)
 	{
@@ -99,13 +99,14 @@ int replace_alias(info_t *info)
 }
 
 /**
- * replace_vars -> replace  vars in the tokenized str
- * @info -> parameter struct
+ * replace_vars - replaces  tokenized string
+ * @info: the 
  *
- * Return: 1 (replaced), 0 (other)
+ * Return: 1 if replaced, 0 otherwise
  */
 int replace_vars(info_t *info)
 {
+	
 	list_t *node;
 	int i = 0;
 
@@ -140,11 +141,11 @@ int replace_vars(info_t *info)
 }
 
 /**
- * replace_string -> replace str
- * @old -> addr  old str
- * @new -> new str
+ * replace_string - replaces str
+ * @old: address of old str
+ * @new: new str
  *
- * Return -> 1 (replaced), 0 (other)
+ * Return: 1 if replaced, 0 otherwise
  */
 int replace_string(char **old, char *new)
 {

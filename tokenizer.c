@@ -1,18 +1,19 @@
 #include "shell.h"
 
 /**
- * **strtow -> split  str into word
- * @str -> input str
- * @d -> delimeter str
- * Return -> pointer to array of str, or NULL on failure
+ * **strtow - splits a string into w
+ * @str: the input str
+ * @d: the delimeter str
+ * Return: a pointer to an array of str
  */
 
 char **strtow(char *str, char *d)
 {
-	int  m, i, k,j, numwords = 0;
+	int i, j;
+	int k, m, numwords = 0;
 	char **s;
 
-	if ((str == NULL) || (str[0] == 0))
+	if (str == NULL || str[0] == 0)
 		return (NULL);
 	if (!d)
 		d = " ";
@@ -49,17 +50,18 @@ char **strtow(char *str, char *d)
 }
 
 /**
- * **strtow2 -> split  str into word
- * @str -> input str
- * @d -> delimeter
- * Return -> pointer to array of str, or NULL on failure
+ * **strtow2 - splits a string into words
+ * @str: the input str
+ * @d: the deli
+ * Return: a pointer to an array of strr NULL on failure
  */
 char **strtow2(char *str, char d)
 {
+	int i, j; 
+	int k, m, numwords = 0;
 	char **s;
-	int m, i,  k, j, numwords = 0;
 
-	if ((str == NULL) || (str[0] == 0))
+	if (str == NULL || str[0] == 0)
 		return (NULL);
 	for (i = 0; str[i] != '\0'; i++)
 		if ((str[i] != d && str[i + 1] == d) ||
